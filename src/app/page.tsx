@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import styles from './page.module.css';
+import { ContactForm } from './ContactForm';
 
 export default function Home() {
   return (
@@ -140,38 +141,7 @@ export default function Home() {
         <h2>Next Project</h2>
         <p>Have a custom project in mind? Let&apos;s make it happen.</p>
         
-        <form className={styles.contactForm}>
-          <div className={styles.formGroup}>
-            <label htmlFor="name">Name</label>
-            <input type="text" id="name" name="name" required />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" name="email" required />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="description">Project Description</label>
-            <textarea
-              id="description"
-              name="description"
-              rows={6}
-              placeholder="Tell me about your project..."
-              required
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="image">Reference Image (Optional)</label>
-            <input type="file" id="image" name="image" accept="image/*" />
-            <span className={styles.fileHelper}>Upload an example or inspiration image</span>
-          </div>
-
-          <button type="submit" className={styles.submitButton}>
-            Submit Project Request
-          </button>
-        </form>
+        <ContactForm />
       </section>
     </main>
   );
