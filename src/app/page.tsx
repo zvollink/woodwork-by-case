@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main>
       <nav>
-        <h1>Woodwork by Case</h1>
+        <h1 className={styles.sectionTitle}>Woodwork by Case</h1>
         <div>
           <a href="#about">About</a>
           <a href="#projects">Projects</a>
@@ -116,15 +116,6 @@ export default function Home() {
           <p>Original designs conceptualized and crafted from start to finish.</p>
           <div className={styles.gallery}>
             <div className={styles.galleryItem}>
-              <Image src="/cutting-board-white-oak.jpg" alt="Cutting Board - White Oak" width={800} height={600} />
-            </div>
-            <div className={styles.galleryItem}>
-              <Image src="/cutting-board-brick-pattern-oak-walnut.jpg" alt="Cutting Board - Brick Pattern Oak/Walnut" width={800} height={600} />
-            </div>
-            <div className={styles.galleryItem}>
-              <Image src="/cutting-board-cherry-brick-walnut.jpg" alt="Cutting Board - Brick Pattern Cherry Walnut" width={800} height={600} />
-            </div>
-            <div className={styles.galleryItem}>
               <Image src="/reindeer.jpg" alt="Reindeer" width={800} height={600} />
             </div>
             <div className={styles.galleryItem}>
@@ -133,13 +124,22 @@ export default function Home() {
             <div className={styles.galleryItem}>
               <Image src="/terrarium-light-cover.jpg" alt="Terrarium Light Cover" width={800} height={600} />
             </div>
+            <div className={styles.galleryItem}>
+              <Image src="/cutting-board-white-oak.jpg" alt="Cutting Board - White Oak" width={800} height={600} />
+            </div>
+            <div className={styles.galleryItem}>
+              <Image src="/cutting-board-brick-pattern-oak-walnut.jpg" alt="Cutting Board - Brick Pattern Oak/Walnut" width={800} height={600} />
+            </div>
+            <div className={styles.galleryItem}>
+              <Image src="/cutting-board-cherry-brick-walnut.jpg" alt="Cutting Board - Brick Pattern Cherry Walnut" width={800} height={600} />
+            </div>
           </div>
         </div>
       </section>
 
       <section id="contact">
         <h2>Next Project</h2>
-        <p>Have a custom project in mind? Let&apos;s make it happen.</p>
+        <p>Have a custom project in mind? Found something you like on Pinterest? Let&apos;s make it happen.</p>
         
         <ContactForm />
       </section>
