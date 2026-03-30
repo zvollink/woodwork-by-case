@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styles from './page.module.css';
 
 export default function Home() {
@@ -26,12 +27,11 @@ export default function Home() {
           <div className={styles.serviceCategory}>
             <h4>Home Construction & Renovation</h4>
             <ul>
-              <li>Roofing</li>
-              <li>Siding</li>
-              <li>Framing</li>
-              <li>Drywall</li>
-              <li>Doors & Windows</li>
-              <li>Interior & Exterior Trim</li>
+              <li>Trim Carpentry</li>
+              <li>Rough Framing</li>
+              <li>Doors</li>
+              <li>Sheds</li>
+              <li>Playsets</li>
             </ul>
           </div>
 
@@ -42,7 +42,8 @@ export default function Home() {
               <li>Built-ins</li>
               <li>Furniture</li>
               <li>Cutting Boards</li>
-              <li>Playsets</li>
+              <li>Cabinets</li>
+              <li>Bookcases</li>
             </ul>
           </div>
         </div>
@@ -55,15 +56,56 @@ export default function Home() {
           <h3>Designed by Others, Built by Me</h3>
           <p>Bringing client visions to life with precision and craftsmanship.</p>
           <div className={styles.gallery}>
-            {/* Images will go here */}
             <div className={styles.galleryItem}>
-              <img src="/placeholder.jpg" alt="Project 1" />
+              <Image src="/king-canopy-rustic-bedframe.jpg" alt="King Canopy Rustic Bedframe" width={800} height={600} />
             </div>
             <div className={styles.galleryItem}>
-              <img src="/placeholder.jpg" alt="Project 2" />
+              <Image src="/king-canopy-rustic-bedframe-2.jpg" alt="King Canopy Rustic Bedframe 2" width={800} height={600} />
             </div>
             <div className={styles.galleryItem}>
-              <img src="/placeholder.jpg" alt="Project 3" />
+              <Image src="/endtable.jpg" alt="End Table" width={800} height={600} />
+            </div>
+            <div className={styles.galleryItem}>
+              <Image src="/queen-bed-set.jpg" alt="Queen Bed Set" width={800} height={600} />
+            </div>
+            <div className={styles.galleryItem}>
+              <Image src="/bedroom-built-ins.jpg" alt="Bedroom Built-ins" width={800} height={600} />
+            </div>
+            <div className={styles.galleryItem}>
+              <Image src="/hall-tree.jpg" alt="Hall Tree" width={800} height={600} />
+            </div>
+            <div className={styles.galleryItem}>
+              <Image src="/living-room-built-ins.jpg" alt="Living Room Built-ins" width={800} height={600} />
+            </div>
+            <div className={styles.galleryItem}>
+              <Image src="/kitchen-island.jpg" alt="Kitchen Island" width={800} height={600} />
+            </div>
+            <div className={styles.galleryItem}>
+              <Image src="/kitchen-island-2.jpg" alt="Kitchen Island 2" width={800} height={600} />
+            </div>
+            <div className={styles.galleryItem}>
+              <Image src="/china-cabinet.jpg" alt="China Cabinet" width={800} height={600} />
+            </div>
+            <div className={styles.galleryItem}>
+              <Image src="/exterior-hot-tub-room.jpg" alt="Exterior Hot Tub Room" width={800} height={600} />
+            </div>
+            <div className={styles.galleryItem}>
+              <Image src="/entertainment-center.jpg" alt="Entertainment Center" width={800} height={600} />
+            </div>
+            <div className={styles.galleryItem}>
+              <Image src="/built-in-closets.jpg" alt="Built-in Closets" width={800} height={600} />
+            </div>
+            <div className={styles.galleryItem}>
+              <Image src="/built-in-closets-2.jpg" alt="Built-in Closets 2" width={800} height={600} />
+            </div>
+            <div className={styles.galleryItem}>
+              <Image src="/built-in-mini-bar.jpg" alt="Built-in Mini Bar" width={800} height={600} />
+            </div>
+            <div className={styles.galleryItem}>
+              <Image src="/playset.jpg" alt="Playset" width={800} height={600} />
+            </div>
+            <div className={styles.galleryItem}>
+              <Image src="/shed.jpg" alt="Shed" width={800} height={600} />
             </div>
           </div>
         </div>
@@ -72,15 +114,23 @@ export default function Home() {
           <h3>WWBC Originals</h3>
           <p>Original designs conceptualized and crafted from start to finish.</p>
           <div className={styles.gallery}>
-            {/* Images will go here */}
             <div className={styles.galleryItem}>
-              <img src="/placeholder.jpg" alt="Original 1" />
+              <Image src="/cutting-board-white-oak.jpg" alt="Cutting Board - White Oak" width={800} height={600} />
             </div>
             <div className={styles.galleryItem}>
-              <img src="/placeholder.jpg" alt="Original 2" />
+              <Image src="/cutting-board-brick-pattern-oak-walnut.jpg" alt="Cutting Board - Brick Pattern Oak/Walnut" width={800} height={600} />
             </div>
             <div className={styles.galleryItem}>
-              <img src="/placeholder.jpg" alt="Original 3" />
+              <Image src="/cutting-board-cherry-brick-walnut.jpg" alt="Cutting Board - Brick Pattern Cherry Walnut" width={800} height={600} />
+            </div>
+            <div className={styles.galleryItem}>
+              <Image src="/reindeer.jpg" alt="Reindeer" width={800} height={600} />
+            </div>
+            <div className={styles.galleryItem}>
+              <Image src="/album-crates.jpg" alt="Album Crates" width={800} height={600} />
+            </div>
+            <div className={styles.galleryItem}>
+              <Image src="/terrarium-light-cover.jpg" alt="Terrarium Light Cover" width={800} height={600} />
             </div>
           </div>
         </div>
@@ -88,34 +138,24 @@ export default function Home() {
 
       <section id="contact">
         <h2>Next Project</h2>
-        <p>Have a custom project in mind? Let's make it happen.</p>
+        <p>Have a custom project in mind? Let&apos;s make it happen.</p>
         
         <form className={styles.contactForm}>
           <div className={styles.formGroup}>
             <label htmlFor="name">Name</label>
-            <input 
-              type="text" 
-              id="name" 
-              name="name" 
-              required 
-            />
+            <input type="text" id="name" name="name" required />
           </div>
 
           <div className={styles.formGroup}>
             <label htmlFor="email">Email</label>
-            <input 
-              type="email" 
-              id="email" 
-              name="email" 
-              required 
-            />
+            <input type="email" id="email" name="email" required />
           </div>
 
           <div className={styles.formGroup}>
             <label htmlFor="description">Project Description</label>
-            <textarea 
-              id="description" 
-              name="description" 
+            <textarea
+              id="description"
+              name="description"
               rows={6}
               placeholder="Tell me about your project..."
               required
@@ -124,12 +164,7 @@ export default function Home() {
 
           <div className={styles.formGroup}>
             <label htmlFor="image">Reference Image (Optional)</label>
-            <input 
-              type="file" 
-              id="image" 
-              name="image" 
-              accept="image/*"
-            />
+            <input type="file" id="image" name="image" accept="image/*" />
             <span className={styles.fileHelper}>Upload an example or inspiration image</span>
           </div>
 
