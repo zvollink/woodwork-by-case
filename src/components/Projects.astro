@@ -1,0 +1,352 @@
+---
+const builtByMe = [
+  { src: '/king-canopy-rustic-bedframe.jpg',         alt: 'King Canopy Rustic Bed Frame' },
+  { src: '/king-canopy-rustic-bedframe-2.jpg',       alt: 'King Canopy Bed Frame — Detail' },
+  { src: '/endtable.jpg',                            alt: 'End Table' },
+  { src: '/queen-bed-set.jpg',                       alt: 'Queen Bed Set' },
+  { src: '/bedroom-built-ins.jpg',                   alt: 'Bedroom Built-ins' },
+  { src: '/hall-tree.jpg',                           alt: 'Hall Tree' },
+  { src: '/living-room-built-ins.jpg',               alt: 'Living Room Built-ins' },
+  { src: '/kitchen-island.jpg',                      alt: 'Kitchen Island' },
+  { src: '/kitchen-island-2.jpg',                    alt: 'Kitchen Island — Detail' },
+  { src: '/china-cabinet.jpg',                       alt: 'China Cabinet' },
+  { src: '/exterior-hot-tub-room.jpg',               alt: 'Exterior Hot Tub Room' },
+  { src: '/entertainment-center.jpg',                alt: 'Entertainment Center' },
+  { src: '/built-in-closets.jpg',                    alt: 'Built-in Closets' },
+  { src: '/built-in-closets-2.jpg',                  alt: 'Built-in Closets — Detail' },
+  { src: '/built-in-mini-bar.jpg',                   alt: 'Built-in Mini Bar' },
+  { src: '/playset.jpg',                             alt: 'Custom Playset' },
+  { src: '/shed.jpg',                                alt: 'Custom Shed' },
+];
+
+const originals = [
+  { src: '/reindeer.jpg',                                    alt: 'Wood-carved Reindeer' },
+  { src: '/album-crates.jpg',                                alt: 'Record Album Crates' },
+  { src: '/terrarium-light-cover.jpg',                       alt: 'Terrarium Light Cover' },
+  { src: '/cutting-board-white-oak.jpg',                     alt: 'Cutting Board — White Oak' },
+  { src: '/cutting-board-brick-pattern-oak-walnut.jpg',      alt: 'Cutting Board — Brick Pattern Oak & Walnut' },
+  { src: '/cutting-board-cherry-brick-walnut.jpg',           alt: 'Cutting Board — Cherry & Walnut' },
+];
+---
+
+<section id="projects">
+  <div class="inner">
+    <p class="eyebrow">The Work</p>
+    <h2>Projects</h2>
+
+    <div class="category">
+      <div class="category-header">
+        <h3>Designed by Others, Built by Case</h3>
+        <p>Bringing client visions to life — from playsets to built-ins to full bedroom sets.</p>
+      </div>
+      <div class="gallery">
+        {builtByMe.map((img, i) => (
+          <button
+            class="gallery-item"
+            data-src={img.src}
+            data-alt={img.alt}
+            data-index={i}
+            data-group="built"
+            aria-label={`View: ${img.alt}`}
+          >
+            <img src={img.src} alt={img.alt} loading="lazy" />
+            <div class="hover-label">
+              <span>{img.alt}</span>
+            </div>
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <div class="category">
+      <div class="category-header">
+        <h3>Woodwork by Case Originals</h3>
+        <p>Original designs — conceptualized, crafted, and finished from scratch. Many available to ship nationwide.</p>
+      </div>
+      <div class="gallery">
+        {originals.map((img, i) => (
+          <button
+            class="gallery-item"
+            data-src={img.src}
+            data-alt={img.alt}
+            data-index={i}
+            data-group="originals"
+            aria-label={`View: ${img.alt}`}
+          >
+            <img src={img.src} alt={img.alt} loading="lazy" />
+            <div class="hover-label">
+              <span>{img.alt}</span>
+            </div>
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
+  <button class="lb-close" aria-label="Close">&times;</button>
+  <button class="lb-prev" aria-label="Previous">&#8592;</button>
+  <button class="lb-next" aria-label="Next">&#8594;</button>
+  <div class="lb-img-wrap">
+    <img id="lb-img" src="" alt="" />
+  </div>
+  <p id="lb-caption"></p>
+</div>
+
+<script>
+  const lightbox   = document.getElementById('lightbox')!;
+  const lbImg      = document.getElementById('lb-img') as HTMLImageElement;
+  const lbCaption  = document.getElementById('lb-caption')!;
+  const lbClose    = lightbox.querySelector('.lb-close')!;
+  const lbPrev     = lightbox.querySelector('.lb-prev')!;
+  const lbNext     = lightbox.querySelector('.lb-next')!;
+
+  let currentGroup: HTMLButtonElement[] = [];
+  let currentIdx = 0;
+
+  function openLightbox(btn: HTMLButtonElement) {
+    const group = btn.dataset.group!;
+    currentGroup = Array.from(
+      document.querySelectorAll<HTMLButtonElement>(`.gallery-item[data-group="${group}"]`)
+    );
+    currentIdx = currentGroup.indexOf(btn);
+    showSlide(currentIdx);
+    lightbox.hidden = false;
+    document.body.style.overflow = 'hidden';
+    lbClose.focus();
+  }
+
+  function showSlide(idx: number) {
+    const btn = currentGroup[idx];
+    lbImg.src = btn.dataset.src!;
+    lbImg.alt = btn.dataset.alt!;
+    lbCaption.textContent = btn.dataset.alt!;
+    (lbPrev as HTMLButtonElement).disabled = idx === 0;
+    (lbNext as HTMLButtonElement).disabled = idx === currentGroup.length - 1;
+  }
+
+  function closeLightbox() {
+    lightbox.hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('.gallery-item').forEach(btn => {
+    btn.addEventListener('click', () => openLightbox(btn));
+  });
+
+  lbClose.addEventListener('click', closeLightbox);
+
+  lbPrev.addEventListener('click', () => {
+    if (currentIdx > 0) showSlide(--currentIdx);
+  });
+
+  lbNext.addEventListener('click', () => {
+    if (currentIdx < currentGroup.length - 1) showSlide(++currentIdx);
+  });
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (lightbox.hidden) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft' && currentIdx > 0) showSlide(--currentIdx);
+    if (e.key === 'ArrowRight' && currentIdx < currentGroup.length - 1) showSlide(++currentIdx);
+  });
+</script>
+
+<style>
+  section {
+    padding: 7rem 2rem 6rem;
+    background: var(--white);
+  }
+
+  .inner {
+    max-width: 1160px;
+    margin: 0 auto;
+  }
+
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--oak);
+    margin-bottom: 0.75rem;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    color: var(--ink);
+    margin-bottom: 3.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .category {
+    margin-bottom: 4.5rem;
+  }
+
+  .category-header {
+    margin-bottom: 1.75rem;
+  }
+
+  .category-header h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.35rem;
+  }
+
+  .category-header p {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 0.875rem;
+  }
+
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    aspect-ratio: 4 / 3;
+    background: #EDEDEA;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    display: block;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .gallery-item:hover img,
+  .gallery-item:focus-visible img {
+    transform: scale(1.06);
+  }
+
+  .hover-label {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(15,25,15,0.72) 0%, transparent 55%);
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .gallery-item:hover .hover-label,
+  .gallery-item:focus-visible .hover-label {
+    opacity: 1;
+  }
+
+  .hover-label span {
+    color: var(--white);
+    font-size: 0.85rem;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  /* ── Lightbox ── */
+  #lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    background: rgba(10, 10, 8, 0.93);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  #lightbox[hidden] {
+    display: none;
+  }
+
+  .lb-img-wrap {
+    max-width: min(92vw, 1000px);
+    max-height: 78vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #lb-img {
+    max-width: 100%;
+    max-height: 78vh;
+    object-fit: contain;
+    border-radius: 6px;
+    display: block;
+  }
+
+  #lb-caption {
+    color: rgba(255,255,255,0.65);
+    font-size: 0.85rem;
+    text-align: center;
+  }
+
+  .lb-close {
+    position: fixed;
+    top: 1.25rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.7);
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+    z-index: 9001;
+  }
+
+  .lb-close:hover { color: var(--white); }
+
+  .lb-prev,
+  .lb-next {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--white);
+    font-size: 1.25rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    z-index: 9001;
+  }
+
+  .lb-prev { left: 1rem; }
+  .lb-next { right: 1rem; }
+
+  .lb-prev:hover,
+  .lb-next:hover {
+    background: rgba(255,255,255,0.2);
+  }
+
+  .lb-prev:disabled,
+  .lb-next:disabled {
+    opacity: 0.25;
+    cursor: default;
+  }
+</style>

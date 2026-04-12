@@ -1,0 +1,285 @@
+---
+---
+
+<section id="contact">
+  <div class="inner">
+    <div class="left">
+      <p class="eyebrow">Let&apos;s Build Something</p>
+      <h2>Start Your<br />Next Project</h2>
+      <p class="sub">
+        Have a vision? Found something on Pinterest? Building a playset, want a custom piece of furniture, or need built-ins that actually fit your space? Case can make it happen.
+      </p>
+      <ul class="details">
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          DFW Metroplex, Texas
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          Cutting boards &amp; small pieces ship nationwide
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Response within 1–2 business days
+        </li>
+      </ul>
+    </div>
+
+    <div class="right">
+      <form id="contact-form" enctype="multipart/form-data">
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required />
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required />
+        </div>
+
+        <div class="field">
+          <label for="description">Project Description</label>
+          <textarea id="description" name="description" rows="5" placeholder="Describe your project — size, wood type, style, timeline, anything helpful..." required></textarea>
+        </div>
+
+        <div class="field">
+          <label for="image">Reference Image <span class="optional">(Optional)</span></label>
+          <div class="file-wrap">
+            <input type="file" id="image" name="image" accept="image/*" />
+            <span class="file-hint">Upload an inspiration or reference photo</span>
+          </div>
+        </div>
+
+        <button type="submit" id="submit-btn">Send Project Request</button>
+
+        <p id="success-msg" class="feedback success" hidden>Thanks! Case will be in touch soon.</p>
+        <p id="error-msg"   class="feedback error"   hidden>Something went wrong. Please try again.</p>
+      </form>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>&copy; {new Date().getFullYear()} Woodwork by Case &mdash; Case Vollink, DFW Metroplex, Texas</span>
+  </div>
+</section>
+
+<script>
+  const form    = document.getElementById('contact-form') as HTMLFormElement;
+  const btn     = document.getElementById('submit-btn')   as HTMLButtonElement;
+  const success = document.getElementById('success-msg')  as HTMLParagraphElement;
+  const error   = document.getElementById('error-msg')    as HTMLParagraphElement;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    success.hidden = true;
+    error.hidden   = true;
+
+    const res = await fetch('/api/contact', { method: 'POST', body: new FormData(form) });
+
+    if (res.ok) {
+      success.hidden = false;
+      form.reset();
+    } else {
+      error.hidden = false;
+    }
+
+    btn.disabled = false;
+    btn.textContent = 'Send Project Request';
+  });
+</script>
+
+<style>
+  section {
+    background: var(--forest-dk);
+    color: var(--white);
+  }
+
+  .inner {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 7rem 2rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  /* ── Left column ── */
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--oak-lt);
+    margin-bottom: 0.75rem;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.02em;
+  }
+
+  .sub {
+    color: rgba(255,255,255,0.65);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    max-width: 400px;
+  }
+
+  .details {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .details li {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: rgba(255,255,255,0.72);
+    font-size: 0.9rem;
+  }
+
+  .details svg {
+    flex-shrink: 0;
+    color: var(--oak-lt);
+  }
+
+  /* ── Form ── */
+  .right {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 2.5rem;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 1.4rem;
+  }
+
+  label {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.02em;
+  }
+
+  .optional {
+    font-weight: 400;
+    color: rgba(255,255,255,0.4);
+  }
+
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    padding: 0.75rem 1rem;
+    border: 1.5px solid rgba(255,255,255,0.14);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    background: rgba(255,255,255,0.07);
+    color: var(--white);
+    transition: border-color 0.2s, background 0.2s;
+    width: 100%;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: rgba(255,255,255,0.3);
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--oak-lt);
+    background: rgba(255,255,255,0.1);
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  .file-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  input[type="file"] {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.55);
+  }
+
+  .file-hint {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.35);
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    padding: 0.9rem;
+    background: var(--oak);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    letter-spacing: 0.01em;
+  }
+
+  button[type="submit"]:hover:not(:disabled) {
+    background: var(--oak-lt);
+    transform: translateY(-1px);
+  }
+
+  button[type="submit"]:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  .feedback {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .success { color: #7ec87f; }
+  .error   { color: #f08080; }
+
+  /* ── Footer bar ── */
+  .footer-bar {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    text-align: center;
+    padding: 1.5rem 2rem;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 820px) {
+    .inner {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      padding: 5rem 1.5rem 4rem;
+    }
+
+    .sub {
+      max-width: 100%;
+    }
+  }
+</style>

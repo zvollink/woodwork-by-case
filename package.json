@@ -1,25 +1,22 @@
 {
   "name": "woodwork-by-case",
-  "version": "0.1.0",
-  "private": true,
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "dev": "panda codegen && astro dev",
+    "build": "panda codegen && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
-    "next": "16.1.1",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
-    "resend": "^6.9.4"
+    "@astrojs/node": "^10.0.4",
+    "astro": "^6.1.5",
+    "resend": "^6.10.0"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.1.1",
-    "typescript": "^5"
+    "@pandacss/dev": "^1.9.1"
   }
 }
