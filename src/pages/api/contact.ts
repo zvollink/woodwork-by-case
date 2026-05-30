@@ -19,7 +19,7 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   const { error } = await resend.emails.send({
-    from:        'Woodwork by Case <onboarding@resend.dev>',
+    from:        'Woodwork by Case <noreply@woodworkbycase.com>',
     to:          ['zvollink@gmail.com'],
     replyTo:     email,
     subject:     `New project request from ${name}`,
