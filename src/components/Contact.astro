@@ -60,6 +60,7 @@
 
   <div class="footer-bar">
     <span>&copy; {new Date().getFullYear()} Woodwork by Case &mdash; Case Vollink, DFW Metroplex, Texas</span>
+    <span>Designed by <a href="https://thezach.website/" target="_blank" rel="noopener noreferrer">Zach Vollink</a></span>
   </div>
 </section>
 
@@ -264,11 +265,25 @@
   /* ── Footer bar ── */
   .footer-bar {
     border-top: 1px solid rgba(255,255,255,0.08);
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
     padding: 1.5rem 2rem;
     font-size: 0.8rem;
     color: rgba(255,255,255,0.3);
     letter-spacing: 0.02em;
+  }
+
+  .footer-bar a {
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-bar a:hover {
+    color: rgba(255,255,255,0.7);
   }
 
   @media (max-width: 820px) {
