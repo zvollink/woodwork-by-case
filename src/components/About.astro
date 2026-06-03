@@ -21,14 +21,6 @@
       </div>
     </div>
 
-    <blockquote class="testimonial">
-      <svg class="quote-mark" width="36" height="28" viewBox="0 0 36 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M0 28V17.6C0 12.587 1.493 8.48 4.48 5.28C7.467 2.08 11.627 0.373333 16.96 0.159999L17.92 3.2C14.613 3.62 12.053 4.9 10.24 7.04C8.533 9.07333 7.68 11.5 7.68 14.32H14.72V28H0ZM19.04 28V17.6C19.04 12.587 20.533 8.48 23.52 5.28C26.507 2.08 30.667 0.373333 36 0.159999L36.96 3.2C33.653 3.62 31.093 4.9 29.28 7.04C27.573 9.07333 26.72 11.5 26.72 14.32H33.76V28H19.04Z" fill="currentColor"/>
-      </svg>
-      <p>"Add a testimonial here — ask a happy client for a sentence or two about the experience and quality of work."</p>
-      <cite>— Client Name, Location</cite>
-    </blockquote>
-
     <div class="services">
       <p class="eyebrow">What I Do</p>
       <h2 class="services-heading">Services &amp; Capabilities</h2>
@@ -197,20 +189,20 @@
   }
 
   .service-card {
-    background: var(--white);
+    background: var(--forest);
     border-radius: 14px;
     padding: 2rem 1.75rem;
-    border: 1px solid var(--border);
+    border: 1px solid rgba(255,255,255,0.08);
     transition: box-shadow 0.25s, transform 0.25s;
   }
 
   .service-card:hover {
-    box-shadow: 0 10px 32px rgba(0,0,0,0.08);
+    box-shadow: 0 10px 32px rgba(0,0,0,0.2);
     transform: translateY(-3px);
   }
 
   .card-icon {
-    color: var(--forest);
+    color: var(--oak-lt);
     margin-bottom: 1rem;
   }
 
@@ -218,7 +210,7 @@
     font-family: 'Playfair Display', Georgia, serif;
     font-size: 1.1rem;
     font-weight: 700;
-    color: var(--ink);
+    color: var(--white);
     margin-bottom: 1rem;
   }
 
@@ -231,7 +223,7 @@
 
   .service-card li {
     font-size: 0.9rem;
-    color: var(--muted);
+    color: rgba(255,255,255,0.7);
     padding-left: 1.1rem;
     position: relative;
     display: flex;
@@ -244,13 +236,13 @@
     content: '–';
     position: absolute;
     left: 0;
-    color: var(--oak);
+    color: var(--oak-lt);
   }
 
   .ships-badge {
     display: inline-block;
-    background: rgba(44, 95, 45, 0.1);
-    color: var(--forest);
+    background: rgba(255,255,255,0.12);
+    color: var(--oak-lt);
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 0.05em;
